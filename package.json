@@ -2,7 +2,7 @@
   "name": "react-growth-analytics",
   "version": "1.0.2",
   "description": "Tools to generate analytics",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "repository": "https://github.com/alexmbarton/react-growth-analytics",
   "author": "Alex Barton",
   "license": "MIT",
