@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Tools to generate analytics",
   "main": "index.js",
-  "repository": "tbc",
+  "repository": "https://github.com/alexmbarton/react-analytics",
   "author": "Alex Barton",
   "license": "MIT",
   "private": false
