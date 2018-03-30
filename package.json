@@ -1,6 +1,6 @@
 {
   "name": "react-growth-analytics",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Tools to generate analytics",
   "main": "./dist/index.js",
   "repository": {
@@ -11,16 +11,14 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
     "flow-bin": "^0.69.0"
   },
   "scripts": {
     "build": "babel src --presets babel-preset-env --out-dir dist",
     "prepublish": "yarn run build"
   },
-  "dependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-es2015": "6",
-    "babel-preset-flow": "^6.23.0"
-  }
+  "dependencies": {}
 }
