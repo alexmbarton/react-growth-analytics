@@ -1,6 +1,6 @@
 {
   "name": "react-growth-analytics",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Tools to generate analytics",
   "main": "./dist/index.js",
   "repository": {
@@ -14,7 +14,7 @@
     "flow-bin": "^0.69.0"
   },
   "scripts": {
-    "build": "babel src --presets babel-preset-es2015 --out-dir dist",
+    "build": "babel src --presets babel-preset-env --out-dir dist",
     "prepublish": "yarn run build"
   },
   "dependencies": {
