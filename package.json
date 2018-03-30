@@ -1,0 +1,10 @@
+{
+  "name": "react-analytics",
+  "version": "1.0.0",
+  "description": "Tools to generate analytics",
+  "main": "index.js",
+  "repository": "tbc",
+  "author": "Alex Barton",
+  "license": "MIT",
+  "private": false
+}
