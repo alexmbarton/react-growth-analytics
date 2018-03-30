@@ -1,8 +1,8 @@
 {
   "name": "react-growth-analytics",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Tools to generate analytics",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "repository": {
     "url": "https://github.com/alexmbarton/react-growth-analytics",
     "type": "git"
@@ -11,5 +11,13 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {},
-  "scripts": {}
+  "scripts": {
+    "build": "babel src --presets babel-preset-es2015 --out-dir dist",
+    "prepublish": "yarn run build"
+  },
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "6"
+  }
 }
