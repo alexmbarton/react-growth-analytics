@@ -1,10 +1,10 @@
 // @flow
-// import toSevenDay from './src/toSevenDay';
 
 type DayData = {
   date: Date,
   count: number
 };
+
 type SevenDayInput = DayData[];
 
 export const toSevenDay = (data: SevenDayInput) => {
