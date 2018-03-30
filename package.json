@@ -1,6 +1,6 @@
 {
   "name": "react-growth-analytics",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tools to generate analytics",
   "main": "index.js",
   "repository": "https://github.com/alexmbarton/react-growth-analytics",
