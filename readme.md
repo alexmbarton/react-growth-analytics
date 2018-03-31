@@ -12,6 +12,10 @@ yarn add react-growth-analytics
 
 ### SevenDayInput()
 
+Converts daily data to rolling 7 day cohorts. Works backwards from most recent date and ignores the earliest incomplete week's data to remove outliers.
+
+Useful for monitoring product changes on a daily basis.
+
 #### API
 
 ```
