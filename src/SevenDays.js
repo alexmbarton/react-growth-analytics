@@ -23,7 +23,7 @@ module.exports = function(data: SevenDayInput) {
 
     // Loop through data set
     .forEach(value => {
-      if (i % 7 === 6) {
+      if (i % 7 === 1) {
         rowArray.push(value.date);
       }
 
