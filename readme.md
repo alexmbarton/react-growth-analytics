@@ -32,7 +32,7 @@ SevenDayInput(data: SevenDayInput);
 ### Sample usage
 
 ```
-import sevenDayInput from 'react-growth-analytics';
+import { sevenDays } from 'react-growth-analytics';
 
 const dayData = [
   {
@@ -46,7 +46,7 @@ const dayData = [
   ...
 ]
 
-let output = sevenDayInput(dayData);
+let output = sevenDays(dayData);
 
 output.unshift(['Date', '# count']);
 
