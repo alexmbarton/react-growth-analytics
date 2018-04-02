@@ -1,3 +1,3 @@
 module.exports = {
-  sevenDays: require('./SevenDays')
+  sevenDays: require('./cohortConverter')
 };
