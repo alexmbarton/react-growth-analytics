@@ -4,7 +4,7 @@ import { accumulator } from './utils';
 
 import type { data } from './types';
 
-export default function(data: data, period: number) {
+module.exports = function(data: data, period: number) {
   // If there isn't data or there is less than
   // 7 items in the array, return false.
   if (!data || data.length < period) {
@@ -19,4 +19,4 @@ export default function(data: data, period: number) {
   output.reverse();
 
   return output;
-}
+};
