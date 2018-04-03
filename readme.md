@@ -24,15 +24,15 @@ type DayData = {
   count: number
 };
 
-type SevenDayInput = DayData[];
+type dataFormat = DayData[];
 
-SevenDayInput(data: SevenDayInput);
+CohortConverter(data: dataFormat);
 ```
 
 ### Sample usage
 
 ```
-import { sevenDays } from 'react-growth-analytics';
+import { cohortConverter } from 'react-growth-analytics';
 
 const dayData = [
   {
@@ -46,8 +46,13 @@ const dayData = [
   ...
 ]
 
-let output = sevenDays(dayData);
+// View data in 7 days
+let output = cohortConverter(dayData,7);
 
+// Now view data in 28 days
+output = cohortConverter(dayData,28);
+
+// Let's add graph headers
 output.unshift(['Date', '# count']);
 
 // Add to Google Chart...

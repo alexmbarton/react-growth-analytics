@@ -2,6 +2,7 @@
 
 import type { data } from './types';
 
+// Accumlates count over a given period
 export const accumulator = (data: data, period: number) => {
   const output = [];
 
