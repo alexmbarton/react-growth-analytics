@@ -51,7 +51,7 @@ describe('SevenDays', () => {
   it('should return the correct n minums', () => {
     const output = cohortConversion(data, 7);
 
-    expect(output[1][0]).toEqual('n-7');
-    expect(output[0][0]).toEqual('n-14');
+    expect(output[1][0]).toEqual('-7');
+    expect(output[0][0]).toEqual('-14');
   });
 });
