@@ -48,9 +48,10 @@ describe('SevenDays', () => {
     expect(output[0][1]).toEqual(70);
   });
 
-  it('should return the first date of the series', () => {
+  it('should return the correct n minums', () => {
     const output = cohortConversion(data, 7);
 
-    expect(output[0][0]).toEqual('2018-01-01');
+    expect(output[1][0]).toEqual('n-7');
+    expect(output[0][0]).toEqual('n-14');
   });
 });
