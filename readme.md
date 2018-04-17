@@ -26,7 +26,7 @@ type DayData = {
 
 type dataFormat = DayData[];
 
-CohortConverter(data: dataFormat);
+CohortConverter(data: dataFormat, cohortLength: number, outputAsAPercentage: boolean, includeGoal: number);
 ```
 
 ### Sample usage
@@ -64,4 +64,16 @@ If you would like to receive output as a percentage, then simply add a `true` bo
 
 ```javascript
 const output = cohortConverter(dataArray, period, true);
+```
+
+### Adding a goal
+
+If you would like to add a static goal to your output then simply provide it as a 4th param.
+
+If you have requested the data to be returned as a percentage, the goal will also be returned as a percentage.
+
+```javascript
+const output = cohortConverter(dataArray, period, true, 30); // 0.3
+
+cohortConverter(dataArray, period, false, 30); // 30
 ```
