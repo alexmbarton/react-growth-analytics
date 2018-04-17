@@ -61,4 +61,16 @@ describe('SevenDays', () => {
     expect(output[1][1]).toEqual(0.5);
     expect(output[0][1]).toEqual(0.25);
   });
+
+  it('should return a goal if one is set', () => {
+    const output = cohortConversion(data, 7, false, 30);
+
+    expect(output[1][2]).toEqual(30);
+  });
+
+  it('should return a percentage goal if one is set', () => {
+    const output = cohortConversion(data, 7, true, 30);
+
+    expect(output[1][2]).toEqual(0.3);
+  });
 });

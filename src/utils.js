@@ -6,7 +6,8 @@ import type { data } from './types';
 export const accumulator = (
   data: data,
   period: number,
-  percentage: boolean
+  percentage: boolean,
+  goal: number
 ) => {
   const input = data.slice();
   const output = [];
@@ -30,6 +31,11 @@ export const accumulator = (
     }
 
     rowArray.push(count);
+
+    if (goal) {
+      const goalValue = percentage ? goal / 100 : goal;
+      rowArray.push(goalValue);
+    }
 
     output.push(rowArray);
   }
