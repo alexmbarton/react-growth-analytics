@@ -57,3 +57,11 @@ output.unshift(['Date', '# count']);
 
 // Add to Google Chart...
 ```
+
+### Output as percentage
+
+If you would like to receive output as a percentage, then simply add a `true` boolean to `cohortConverter()`:
+
+```javascript
+const output = cohortConverter(dataArray, period, true);
+```
