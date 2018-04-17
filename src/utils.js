@@ -3,21 +3,31 @@
 import type { data } from './types';
 
 // Accumlates count over a given period
-export const accumulator = (data: data, period: number) => {
+export const accumulator = (
+  data: data,
+  period: number,
+  percentage: boolean
+) => {
+  const input = data.slice();
   const output = [];
   let currentPeriod = 0;
-  while (data.length >= period) {
+  while (input.length >= period) {
     const rowArray = [];
 
     currentPeriod += period;
 
     // Take week
-    const week = data.splice(0, period);
+    const week = input.splice(0, period);
 
     // First day should be n minus period.
     rowArray.push(week[period - 7].date);
 
-    const count = week.reduce((s, v) => s + v.count, 0);
+    let count = week.reduce((s, v) => s + v.count, 0);
+
+    if (percentage) {
+      const denom = week.reduce((s, v) => s + v.denom, 0);
+      count = count / denom;
+    }
 
     rowArray.push(count);
 

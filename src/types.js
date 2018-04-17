@@ -2,7 +2,8 @@
 
 export type DayData = {
   date: string,
-  count: number
+  count: number,
+  denom: number
 };
 
 export type data = DayData[];
