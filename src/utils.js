@@ -15,7 +15,7 @@ export const accumulator = (data: data, period: number) => {
     const week = data.splice(0, period);
 
     // First day should be n minus period.
-    rowArray.push('-' + currentPeriod);
+    rowArray.push(week[period - 7].date);
 
     const count = week.reduce((s, v) => s + v.count, 0);
 
