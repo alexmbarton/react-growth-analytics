@@ -12,6 +12,7 @@ export const accumulator = (
   const input = data.slice();
   const output = [];
   let currentPeriod = 0;
+  let attributeCount = 1;
   while (input.length >= period) {
     const rowArray = [];
 
@@ -50,7 +51,15 @@ export const accumulator = (
       rowArray.push(goalValue);
     }
 
-    rowArray.push(rd.attribute);
+    // Handle attributes
+    if (rd.attribute) {
+      rowArray.push(attributeCount);
+      attributeCount++;
+      rowArray.push(rd.attribute);
+    } else {
+      rowArray.push(null);
+      rowArray.push(null);
+    }
 
     output.push(rowArray);
   }
