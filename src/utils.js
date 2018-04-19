@@ -23,19 +23,34 @@ export const accumulator = (
     // First day should be n minus period.
     rowArray.push(week[period - 7].date);
 
-    let count = week.reduce((s, v) => s + v.count, 0);
+    // rd: reduced data
+    let rd = week.reduce(
+      (s, v) => {
+        return {
+          count: (s.count += v.count),
+          denom: (s.denom += v.denom),
+          attribute: (s.attribute += v.attribute ? v.attribute : '')
+        };
+      },
+      {
+        count: 0,
+        denom: 0,
+        attribute: ''
+      }
+    );
 
     if (percentage) {
-      const denom = week.reduce((s, v) => s + v.denom, 0);
-      count = count / denom;
+      rd.count = rd.count / rd.denom;
     }
 
-    rowArray.push(count);
+    rowArray.push(rd.count);
 
     if (goal) {
       const goalValue = percentage ? goal / 100 : goal;
       rowArray.push(goalValue);
     }
+
+    rowArray.push(rd.attribute);
 
     output.push(rowArray);
   }

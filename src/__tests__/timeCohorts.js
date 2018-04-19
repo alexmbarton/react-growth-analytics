@@ -2,21 +2,23 @@
 
 import cohortConversion from '../cohortConverter';
 
+const attributeA = 'Can you believe it?';
+
 const data = [
-  { date: '2018-01-01', count: 10, denom: 20 },
-  { date: '2018-01-02', count: 10, denom: 20 },
-  { date: '2018-01-03', count: 10, denom: 20 },
-  { date: '2018-01-04', count: 10, denom: 20 },
-  { date: '2018-01-05', count: 10, denom: 20 },
-  { date: '2018-01-06', count: 10, denom: 20 },
-  { date: '2018-01-08', count: 10, denom: 20 },
-  { date: '2018-01-09', count: 10, denom: 40 },
-  { date: '2018-01-10', count: 10, denom: 40 },
-  { date: '2018-01-11', count: 10, denom: 40 },
-  { date: '2018-01-12', count: 10, denom: 40 },
-  { date: '2018-01-13', count: 10, denom: 40 },
-  { date: '2018-01-14', count: 10, denom: 40 },
-  { date: '2018-01-15', count: 10, denom: 40 }
+  { date: '2018-01-01', count: 10, denom: 20, attribute: null },
+  { date: '2018-01-02', count: 10, denom: 20, attribute: null },
+  { date: '2018-01-03', count: 10, denom: 20, attribute: null },
+  { date: '2018-01-04', count: 10, denom: 20, attribute: null },
+  { date: '2018-01-05', count: 10, denom: 20, attribute: null },
+  { date: '2018-01-06', count: 10, denom: 20, attribute: null },
+  { date: '2018-01-08', count: 10, denom: 20, attribute: null },
+  { date: '2018-01-09', count: 10, denom: 40, attribute: null },
+  { date: '2018-01-10', count: 10, denom: 40, attribute: null },
+  { date: '2018-01-11', count: 10, denom: 40, attribute: null },
+  { date: '2018-01-12', count: 10, denom: 40, attribute: null },
+  { date: '2018-01-13', count: 10, denom: 40, attribute: attributeA },
+  { date: '2018-01-14', count: 10, denom: 40, attribute: null },
+  { date: '2018-01-15', count: 10, denom: 40, attribute: null }
 ];
 
 describe('SevenDays', () => {
@@ -72,5 +74,11 @@ describe('SevenDays', () => {
     const output = cohortConversion(data, 7, true, 30);
 
     expect(output[1][2]).toEqual(0.3);
+  });
+
+  it('should return a attribute if set', () => {
+    const output = cohortConversion(data, 7);
+
+    expect(output[1][2]).toEqual(attributeA);
   });
 });
