@@ -6,7 +6,7 @@ Tools to display Analytics
 
 Install package by running:
 
-```
+```javascript
 yarn add react-growth-analytics
 ```
 
@@ -18,7 +18,7 @@ Useful for monitoring product changes on a daily basis.
 
 #### API
 
-```
+```javascript
 type DayData = {
   date: Date,
   count: number
@@ -26,12 +26,17 @@ type DayData = {
 
 type dataFormat = DayData[];
 
-CohortConverter(data: dataFormat, cohortLength: number, outputAsAPercentage: boolean, includeGoal: number);
+CohortConverter(
+  (data: dataFormat),
+  (cohortLength: number),
+  (outputAsAPercentage: boolean),
+  (includeGoal: number)
+);
 ```
 
 ### Sample usage
 
-```
+```javascript
 import { cohortConverter } from 'react-growth-analytics';
 
 const dayData = [
@@ -76,4 +81,24 @@ If you have requested the data to be returned as a percentage, the goal will als
 const output = cohortConverter(dataArray, period, true, 30); // 0.3
 
 cohortConverter(dataArray, period, false, 30); // 30
+```
+
+### Adding attributes
+
+If you add a param of `attribute` to your data, it will return as the final param in the accumulated data set.
+
+```javascript
+const dayData = [
+  {
+    date: '2018-01-01',
+    count: 300,
+    attribute: null
+  },
+  {
+    date: '2018-01-02',
+    count: 323,
+    attribute: "Launched Newsletter"
+  },
+  ...
+]
 ```
