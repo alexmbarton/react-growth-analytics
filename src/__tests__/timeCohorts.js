@@ -91,7 +91,7 @@ describe('SevenDays', () => {
   it('should return a attribute if set', () => {
     const output = cohortConversion(data, 7);
 
-    expect(output[1][2]).toEqual(1);
+    expect(output[1][2]).toEqual('1');
     expect(output[1][3]).toEqual(attributeA);
   });
 
@@ -99,9 +99,9 @@ describe('SevenDays', () => {
     const output = cohortConversion(data, 7);
 
     expect(output[0][3]).toEqual(attributeB);
-    expect(output[0][2]).toEqual(2);
+    expect(output[0][2]).toEqual('2');
     expect(output[1][3]).toEqual(attributeA);
-    expect(output[1][2]).toEqual(1);
+    expect(output[1][2]).toEqual('1');
   });
 
   it('should return null for attribute if there is not one present', () => {

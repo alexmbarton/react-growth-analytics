@@ -53,7 +53,7 @@ export const accumulator = (
 
     // Handle attributes
     if (rd.attribute) {
-      rowArray.push(attributeCount);
+      rowArray.push(attributeCount.toString());
       attributeCount++;
       rowArray.push(rd.attribute);
     } else {
