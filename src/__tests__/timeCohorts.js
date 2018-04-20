@@ -70,20 +70,30 @@ describe('SevenDays', () => {
   });
 
   it('should return a percentage if a third param is true', () => {
-    const output = cohortConversion(data, 7, true);
+    const options = {
+      percentage: true
+    };
+    const output = cohortConversion(data, 7, options);
 
     expect(output[0][1]).toEqual(0.5);
     expect(output[1][1]).toEqual(0.25);
   });
 
   it('should return a goal if one is set', () => {
-    const output = cohortConversion(data, 7, false, 30);
+    const options = {
+      goal: 30
+    };
+    const output = cohortConversion(data, 7, options);
 
     expect(output[1][2]).toEqual(30);
   });
 
   it('should return a percentage goal if one is set', () => {
-    const output = cohortConversion(data, 7, true, 30);
+    const options = {
+      percentage: true,
+      goal: 30
+    };
+    const output = cohortConversion(data, 7, options);
 
     expect(output[1][2]).toEqual(0.3);
   });

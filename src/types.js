@@ -8,3 +8,9 @@ export type DayData = {
 };
 
 export type data = DayData[];
+
+export type options = {
+  percentage?: boolean,
+  goal?: number,
+  attribute?: boolean
+};

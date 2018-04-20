@@ -1,14 +1,9 @@
 // @flow
 
-import type { data } from './types';
+import type { data, options } from './types';
 
 // Accumlates count over a given period
-export const accumulator = (
-  data: data,
-  period: number,
-  percentage: boolean,
-  goal: number
-) => {
+export const accumulator = (data: data, period: number, options?: options) => {
   const input = data.slice();
   const output = [];
   let currentPeriod = 0;
@@ -40,14 +35,14 @@ export const accumulator = (
       }
     );
 
-    if (percentage) {
+    if (options && options.percentage) {
       rd.count = rd.count / rd.denom;
     }
 
     rowArray.push(rd.count);
 
-    if (goal) {
-      const goalValue = percentage ? goal / 100 : goal;
+    if (options && options.goal) {
+      const goalValue = options.percentage ? options.goal / 100 : options.goal;
       rowArray.push(goalValue);
     }
 
