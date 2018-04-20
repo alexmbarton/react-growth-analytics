@@ -125,9 +125,7 @@ describe('SevenDays', () => {
       annotate: false
     };
     const output = cohortConversion(data, 7, options);
-    expect(output[0][3]).toEqual(null);
-    expect(output[0][2]).toEqual(null);
-    expect(output[1][3]).toEqual(null);
-    expect(output[1][2]).toEqual(null);
+    expect(output[0][3]).toEqual(undefined);
+    expect(output[1][3]).toEqual(undefined);
   });
 });

@@ -42,13 +42,16 @@ export const accumulator = (data: data, period: number, options: options) => {
     rowArray.push(rd.count);
 
     // Handle attributes
-    if (rd.annotation && options.annotate === true) {
-      rowArray.push(annotationCount.toString());
-      annotationCount++;
-      rowArray.push(rd.annotation);
-    } else {
-      rowArray.push(null);
-      rowArray.push(null);
+
+    if (options.annotate === true) {
+      if (rd.annotation) {
+        rowArray.push(annotationCount.toString());
+        annotationCount++;
+        rowArray.push(rd.annotation);
+      } else {
+        rowArray.push(null);
+        rowArray.push(null);
+      }
     }
 
     // Add the goal as the final item in the object
