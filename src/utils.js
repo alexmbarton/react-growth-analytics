@@ -41,11 +41,6 @@ export const accumulator = (data: data, period: number, options: options) => {
 
     rowArray.push(rd.count);
 
-    if (options && options.goal) {
-      const goalValue = options.percentage ? options.goal / 100 : options.goal;
-      rowArray.push(goalValue);
-    }
-
     // Handle attributes
     if (rd.annotation && options.annotate === true) {
       rowArray.push(annotationCount.toString());
@@ -54,6 +49,12 @@ export const accumulator = (data: data, period: number, options: options) => {
     } else {
       rowArray.push(null);
       rowArray.push(null);
+    }
+
+    // Add the goal as the final item in the object
+    if (options && options.goal) {
+      const goalValue = options.percentage ? options.goal / 100 : options.goal;
+      rowArray.push(goalValue);
     }
 
     output.push(rowArray);

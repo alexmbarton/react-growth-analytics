@@ -85,19 +85,19 @@ cohortConverter(dataArray, period, false, 30); // 30
 
 ### Adding attributes
 
-If you add a param of `attribute` to your data, it will return as the final param in the accumulated data set.
+If you add a param of `annotation` to your data, it will return as the final param in the accumulated data set.
 
 ```javascript
 const dayData = [
   {
     date: '2018-01-01',
     count: 300,
-    attribute: null
+    annotation: null
   },
   {
     date: '2018-01-02',
     count: 323,
-    attribute: "Launched Newsletter"
+    annotation: "Launched Newsletter"
   },
   ...
 ]

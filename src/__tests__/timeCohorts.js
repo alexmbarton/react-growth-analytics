@@ -85,7 +85,7 @@ describe('SevenDays', () => {
     };
     const output = cohortConversion(data, 7, options);
 
-    expect(output[1][2]).toEqual(30);
+    expect(output[1][4]).toEqual(30);
   });
 
   it('should return a percentage goal if one is set', () => {
@@ -95,7 +95,7 @@ describe('SevenDays', () => {
     };
     const output = cohortConversion(data, 7, options);
 
-    expect(output[1][2]).toEqual(0.3);
+    expect(output[1][4]).toEqual(0.3);
   });
 
   it('should return a annotation if set', () => {
