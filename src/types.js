@@ -4,7 +4,7 @@ export type DayData = {
   date: string,
   count: number,
   denom: number,
-  attribute: string
+  annotation: string
 };
 
 export type data = DayData[];
@@ -12,5 +12,5 @@ export type data = DayData[];
 export type options = {
   percentage?: boolean,
   goal?: number,
-  attribute?: boolean
+  annotate?: boolean
 };

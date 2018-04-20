@@ -3,11 +3,11 @@
 import type { data, options } from './types';
 
 // Accumlates count over a given period
-export const accumulator = (data: data, period: number, options?: options) => {
+export const accumulator = (data: data, period: number, options: options) => {
   const input = data.slice();
   const output = [];
   let currentPeriod = 0;
-  let attributeCount = 1;
+  let annotationCount = 1;
   while (input.length >= period) {
     const rowArray = [];
 
@@ -25,13 +25,13 @@ export const accumulator = (data: data, period: number, options?: options) => {
         return {
           count: (s.count += v.count),
           denom: (s.denom += v.denom),
-          attribute: (s.attribute += v.attribute ? v.attribute : '')
+          annotation: (s.annotation += v.annotation ? v.annotation : '')
         };
       },
       {
         count: 0,
         denom: 0,
-        attribute: ''
+        annotation: ''
       }
     );
 
@@ -47,10 +47,10 @@ export const accumulator = (data: data, period: number, options?: options) => {
     }
 
     // Handle attributes
-    if (rd.attribute) {
-      rowArray.push(attributeCount.toString());
-      attributeCount++;
-      rowArray.push(rd.attribute);
+    if (rd.annotation && options.annotate === true) {
+      rowArray.push(annotationCount.toString());
+      annotationCount++;
+      rowArray.push(rd.annotation);
     } else {
       rowArray.push(null);
       rowArray.push(null);

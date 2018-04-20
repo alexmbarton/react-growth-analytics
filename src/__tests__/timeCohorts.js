@@ -2,34 +2,34 @@
 
 import cohortConversion from '../cohortConverter';
 
-const attributeA = 'Can you believe it?';
-const attributeB = 'No I Cannot';
+const annotationA = 'Can you believe it?';
+const annotationB = 'No I Cannot';
 
 let data = [];
 
 beforeEach(() => {
   data = [
-    { date: '2018-01-01', count: 10, denom: 20, attribute: null },
-    { date: '2018-01-02', count: 10, denom: 20, attribute: null },
-    { date: '2018-01-03', count: 10, denom: 20, attribute: attributeB },
-    { date: '2018-01-04', count: 10, denom: 20, attribute: null },
-    { date: '2018-01-05', count: 10, denom: 20, attribute: null },
-    { date: '2018-01-06', count: 10, denom: 20, attribute: null },
-    { date: '2018-01-08', count: 10, denom: 20, attribute: null },
-    { date: '2018-01-09', count: 10, denom: 40, attribute: null },
-    { date: '2018-01-10', count: 10, denom: 40, attribute: null },
-    { date: '2018-01-11', count: 10, denom: 40, attribute: null },
-    { date: '2018-01-12', count: 10, denom: 40, attribute: null },
-    { date: '2018-01-13', count: 10, denom: 40, attribute: attributeA },
-    { date: '2018-01-14', count: 10, denom: 40, attribute: null },
-    { date: '2018-01-15', count: 10, denom: 40, attribute: null },
-    { date: '2018-01-16', count: 10, denom: 60, attribute: null },
-    { date: '2018-01-17', count: 10, denom: 60, attribute: null },
-    { date: '2018-01-18', count: 10, denom: 60, attribute: null },
-    { date: '2018-01-19', count: 10, denom: 60, attribute: null },
-    { date: '2018-01-20', count: 10, denom: 60, attribute: null },
-    { date: '2018-01-21', count: 10, denom: 60, attribute: null },
-    { date: '2018-01-22', count: 10, denom: 60, attribute: null }
+    { date: '2018-01-01', count: 10, denom: 20, annotation: null },
+    { date: '2018-01-02', count: 10, denom: 20, annotation: null },
+    { date: '2018-01-03', count: 10, denom: 20, annotation: annotationB },
+    { date: '2018-01-04', count: 10, denom: 20, annotation: null },
+    { date: '2018-01-05', count: 10, denom: 20, annotation: null },
+    { date: '2018-01-06', count: 10, denom: 20, annotation: null },
+    { date: '2018-01-08', count: 10, denom: 20, annotation: null },
+    { date: '2018-01-09', count: 10, denom: 40, annotation: null },
+    { date: '2018-01-10', count: 10, denom: 40, annotation: null },
+    { date: '2018-01-11', count: 10, denom: 40, annotation: null },
+    { date: '2018-01-12', count: 10, denom: 40, annotation: null },
+    { date: '2018-01-13', count: 10, denom: 40, annotation: annotationA },
+    { date: '2018-01-14', count: 10, denom: 40, annotation: null },
+    { date: '2018-01-15', count: 10, denom: 40, annotation: null },
+    { date: '2018-01-16', count: 10, denom: 60, annotation: null },
+    { date: '2018-01-17', count: 10, denom: 60, annotation: null },
+    { date: '2018-01-18', count: 10, denom: 60, annotation: null },
+    { date: '2018-01-19', count: 10, denom: 60, annotation: null },
+    { date: '2018-01-20', count: 10, denom: 60, annotation: null },
+    { date: '2018-01-21', count: 10, denom: 60, annotation: null },
+    { date: '2018-01-22', count: 10, denom: 60, annotation: null }
   ];
 });
 
@@ -98,25 +98,36 @@ describe('SevenDays', () => {
     expect(output[1][2]).toEqual(0.3);
   });
 
-  it('should return a attribute if set', () => {
+  it('should return a annotation if set', () => {
     const output = cohortConversion(data, 7);
 
     expect(output[1][2]).toEqual('1');
-    expect(output[1][3]).toEqual(attributeA);
+    expect(output[1][3]).toEqual(annotationA);
   });
 
-  it('should should increment the attribute number', () => {
+  it('should should increment the annotation number', () => {
     const output = cohortConversion(data, 7);
 
-    expect(output[0][3]).toEqual(attributeB);
+    expect(output[0][3]).toEqual(annotationB);
     expect(output[0][2]).toEqual('2');
-    expect(output[1][3]).toEqual(attributeA);
+    expect(output[1][3]).toEqual(annotationA);
     expect(output[1][2]).toEqual('1');
   });
 
-  it('should return null for attribute if there is not one present', () => {
+  it('should return null for annotation if there is not one present', () => {
     const output = cohortConversion(data, 7);
     expect(output[2][3]).toEqual(null);
     expect(output[2][2]).toEqual(null);
+  });
+
+  it('should not show annotations if annontate: false', () => {
+    const options = {
+      annotate: false
+    };
+    const output = cohortConversion(data, 7, options);
+    expect(output[0][3]).toEqual(null);
+    expect(output[0][2]).toEqual(null);
+    expect(output[1][3]).toEqual(null);
+    expect(output[1][2]).toEqual(null);
   });
 });
