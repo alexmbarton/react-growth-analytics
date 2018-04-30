@@ -33,7 +33,7 @@ beforeEach(() => {
   ];
 });
 
-describe('SevenDays', () => {
+describe('cohortConverter', () => {
   it('should return false if no data is passed', () => {
     const output = cohortConversion(undefined, 7);
 
@@ -127,5 +127,11 @@ describe('SevenDays', () => {
     const output = cohortConversion(data, 7, options);
     expect(output[0][3]).toEqual(undefined);
     expect(output[1][3]).toEqual(undefined);
+  });
+
+  it('should handle one day', () => {
+    const output = cohortConversion(data, 1);
+
+    expect(output.length).toEqual(21);
   });
 });

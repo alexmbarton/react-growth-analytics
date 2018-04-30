@@ -13,14 +13,16 @@ export const accumulator = (data: data, period: number, options: options) => {
 
     currentPeriod += period;
 
-    // Take week
-    const week = input.splice(0, period);
+    // Take time_period
+    const time_period = input.splice(0, period);
 
-    // First day should be n minus period.
-    rowArray.push(week[period - 7].date);
+    // First day should be last item in array.
+    // Which here is 0 because it's the first as
+    // Array will be reversed on output
+    rowArray.push(time_period[0].date);
 
     // rd: reduced data
-    let rd = week.reduce(
+    let rd = time_period.reduce(
       (s, v) => {
         return {
           count: (s.count += v.count),
