@@ -7,7 +7,8 @@ export const accumulator = (data: data, period: number, options: options) => {
   const input = data.slice();
   const output = [];
   let currentPeriod = 0;
-  let annotationCount = 1;
+  let annotationCount = countAnnotations(data);
+
   while (input.length >= period) {
     const rowArray = [];
 
@@ -48,7 +49,7 @@ export const accumulator = (data: data, period: number, options: options) => {
     if (options.annotate === true) {
       if (rd.annotation) {
         rowArray.push(annotationCount.toString());
-        annotationCount++;
+        annotationCount--;
         rowArray.push(rd.annotation);
       } else {
         rowArray.push(null);
@@ -66,4 +67,11 @@ export const accumulator = (data: data, period: number, options: options) => {
   }
 
   return output;
+};
+
+export const countAnnotations = (data: data) => {
+  return data.reduce((state, item) => {
+    if (item.annotation) state += 1;
+    return state;
+  }, 0);
 };

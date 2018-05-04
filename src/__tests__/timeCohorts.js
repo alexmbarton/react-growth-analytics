@@ -1,6 +1,7 @@
 // @flow
 
 import cohortConversion from '../cohortConverter';
+import { countAnnotations } from '../utils';
 
 const annotationA = 'Can you believe it?';
 const annotationB = 'No I Cannot';
@@ -31,6 +32,14 @@ beforeEach(() => {
     { date: '2018-01-21', count: 10, denom: 60, annotation: null },
     { date: '2018-01-22', count: 10, denom: 60, annotation: null }
   ];
+});
+
+describe('annotationCount', () => {
+  it('should return the correct count of annotations', () => {
+    const output = countAnnotations(data);
+
+    expect(output).toEqual(2);
+  });
 });
 
 describe('cohortConverter', () => {
@@ -101,7 +110,7 @@ describe('cohortConverter', () => {
   it('should return a annotation if set', () => {
     const output = cohortConversion(data, 7);
 
-    expect(output[1][2]).toEqual('1');
+    expect(output[1][2]).toEqual('2');
     expect(output[1][3]).toEqual(annotationA);
   });
 
@@ -109,9 +118,9 @@ describe('cohortConverter', () => {
     const output = cohortConversion(data, 7);
 
     expect(output[0][3]).toEqual(annotationB);
-    expect(output[0][2]).toEqual('2');
+    expect(output[0][2]).toEqual('1');
     expect(output[1][3]).toEqual(annotationA);
-    expect(output[1][2]).toEqual('1');
+    expect(output[1][2]).toEqual('2');
   });
 
   it('should return null for annotation if there is not one present', () => {
