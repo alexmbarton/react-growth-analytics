@@ -11,6 +11,7 @@ module.exports = function(data: DauData) {
 
   // for each data item
   // Devide count / sum of 28 count
-
-  return data;
+  return data.map(datum => {
+    console.log(datum);
+  });
 };
