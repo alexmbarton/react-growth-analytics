@@ -14,3 +14,8 @@ export type options = {
   goal?: number,
   annotate?: boolean
 };
+
+export type Dau = {
+  date: string,
+  count: number
+};
