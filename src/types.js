@@ -19,3 +19,5 @@ export type Dau = {
   date: string,
   count: number
 };
+
+export type DauData = Dau[];
