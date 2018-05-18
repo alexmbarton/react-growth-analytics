@@ -1,5 +1,6 @@
 // @flow
 
 module.exports = {
-  cohortConverter: require('./cohortConverter')
+  cohortConverter: require('./cohortConverter'),
+  stickiness: require('./stickiness')
 };
