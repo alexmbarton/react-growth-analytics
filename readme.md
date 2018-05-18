@@ -10,13 +10,21 @@ Install package by running:
 yarn add react-growth-analytics
 ```
 
-### SevenDayInput()
+### CohortConverter()
 
 Converts daily data to rolling 7 day cohorts. Works backwards from most recent date and ignores the earliest incomplete week's data to remove outliers.
 
 Useful for monitoring product changes on a daily basis.
 
-#### API
+### Stickiness()
+
+Calculates L28. DAU / 28 days of DAU.
+
+Useful for understanding how sticky your product is.
+
+### API
+
+#### CohortConverter
 
 ```javascript
 type DayData = {
@@ -101,4 +109,51 @@ const dayData = [
   },
   ...
 ]
+```
+
+#### Stickiness
+
+```javascript
+type DAU = {
+  date: Date,
+  count: number
+};
+
+type dataFormat = DayData[];
+
+CohortConverter((data: dataFormat));
+```
+
+### Sample usage
+
+```javascript
+import { stickiness } from 'react-growth-analytics';
+
+const dayData = [
+  {
+    date: '2018-01-01',
+    count: 300
+  },
+  {
+    date: '2018-01-02',
+    count: 323
+  },
+  ...
+]
+
+const sticky = stickiness(dayData);
+
+// [
+//   {
+//     date: '2018-01-01',
+//     count: 300,
+//     stickiness: 0.0232
+//   },
+//   {
+//     date: '2018-01-02',
+//     count: 323,
+//     stickiness: 0.0132
+//   },
+//   ...
+// ]
 ```
