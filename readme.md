@@ -22,9 +22,9 @@ Calculates L28. DAU / 28 days of DAU.
 
 Useful for understanding how sticky your product is.
 
-### API
+## API
 
-#### CohortConverter
+### CohortConverter
 
 ```javascript
 type DayData = {
@@ -42,7 +42,7 @@ CohortConverter(
 );
 ```
 
-### Sample usage
+#### Sample usage
 
 ```javascript
 import { cohortConverter } from 'react-growth-analytics';
@@ -71,7 +71,7 @@ output.unshift(['Date', '# count']);
 // Add to Google Chart...
 ```
 
-### Output as percentage
+#### Output as percentage
 
 If you would like to receive output as a percentage, then simply add a `true` boolean to `cohortConverter()`:
 
@@ -79,7 +79,7 @@ If you would like to receive output as a percentage, then simply add a `true` bo
 const output = cohortConverter(dataArray, period, true);
 ```
 
-### Adding a goal
+#### Adding a goal
 
 If you would like to add a static goal to your output then simply provide it as a 4th param.
 
@@ -91,7 +91,7 @@ const output = cohortConverter(dataArray, period, true, 30); // 0.3
 cohortConverter(dataArray, period, false, 30); // 30
 ```
 
-### Adding attributes
+#### Adding attributes
 
 If you add a param of `annotation` to your data, it will return as the final param in the accumulated data set.
 
@@ -111,7 +111,7 @@ const dayData = [
 ]
 ```
 
-#### Stickiness
+### Stickiness
 
 ```javascript
 type DAU = {
@@ -124,7 +124,7 @@ type dataFormat = DayData[];
 CohortConverter((data: dataFormat));
 ```
 
-### Sample usage
+#### Sample usage
 
 ```javascript
 import { stickiness } from 'react-growth-analytics';
