@@ -19,18 +19,10 @@
   },
   "scripts": {
     "build": "babel src --presets babel-preset-env --out-dir dist",
-    "prepublish": "yarn run build",
+    "prepublishOnly": "yarn run build",
     "test": "jest"
   },
-  "dependencies": {
-    "babel-polyfill": "^6.26.0"
-  },
-  "babel": {
-    "presets": [
-      "es2015",
-      "react"
-    ]
-  },
+  "dependencies": {},
   "jest": {
     "setupFiles": [
       "./jest-setup.js"

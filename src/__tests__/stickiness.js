@@ -56,17 +56,17 @@ describe('stickiness passes', () => {
       {
         date: '2018-01-29',
         count: 10,
-        stickiness: '0.0323'
+        stickiness: 0.0323
       },
       {
         date: '2018-01-30',
         count: 10,
-        stickiness: '0.0345'
+        stickiness: 0.0345
       },
       {
         date: '2018-01-31',
         count: 10,
-        stickiness: '0.0357'
+        stickiness: 0.0357
       }
     ]);
   });

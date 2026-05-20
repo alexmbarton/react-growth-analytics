@@ -16,10 +16,10 @@ module.exports = function(data: data, period: number, options?: options) {
   }
 
   // Reverse data so we work backwards to get rolling n days
-  data.reverse();
+  const reversed = [...data].reverse();
 
   const output = accumulator(
-    data,
+    reversed,
     period,
     Object.assign({}, defaultOptions, options)
   );

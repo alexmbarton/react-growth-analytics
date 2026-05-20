@@ -10,10 +10,7 @@ module.exports = function(data: DauData) {
   }
 
   // Reverse data so we work backwards to get rolling n days
-  data.reverse();
-
-  // Create a copy of
-  const input = data.slice();
+  const input = [...data].reverse();
 
   // Create output
   const output = [];
@@ -24,17 +21,18 @@ module.exports = function(data: DauData) {
       date: period[0].date,
       count: period[0].count,
       stickiness: parseFloat(
-        period[0].count /
+        (period[0].count /
           (input
             .slice()
             .splice(0, 27)
             .reduce((s, v) => (s += v.count), 0) +
             period[0].count)
-      ).toFixed(4)
+        ).toFixed(4)
+      )
     });
   }
 
-  // Reverse data back to origonal order
+  // Reverse data back to original order
   output.reverse();
 
   return output;

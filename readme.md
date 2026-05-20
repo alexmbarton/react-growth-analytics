@@ -1,45 +1,36 @@
-# React Analytics
+# Growth Analytics
 
-Tools to display Analytics
+Tools for growth analytics data transformation.
 
 ## Install
 
-Install package by running:
-
-```javascript
+```
 yarn add react-growth-analytics
 ```
 
-### CohortConverter()
+## API
 
-Converts daily data to rolling 7 day cohorts. Works backwards from most recent date and ignores the earliest incomplete week's data to remove outliers.
+### cohortConverter
+
+Converts daily data into rolling N-day cohorts. Works backwards from the most recent date and discards the earliest incomplete period to remove outliers.
 
 Useful for monitoring product changes on a daily basis.
 
-### Stickiness()
-
-Calculates L28. DAU / 28 days of DAU.
-
-Useful for understanding how sticky your product is.
-
-## API
-
-### CohortConverter
-
 ```javascript
 type DayData = {
-  date: Date,
-  count: number
+  date: string,
+  count: number,
+  denom: number,         // denominator for percentage mode
+  annotation: string     // optional annotation label
 };
 
-type dataFormat = DayData[];
+type Options = {
+  percentage?: boolean,  // output as percentage (count / denom)
+  goal?: number,         // static goal line value
+  annotate?: boolean     // include annotations (default: true)
+};
 
-CohortConverter(
-  (data: dataFormat),
-  (cohortLength: number),
-  (outputAsAPercentage: boolean),
-  (includeGoal: number)
-);
+cohortConverter(data: DayData[], period: number, options?: Options)
 ```
 
 #### Sample usage
@@ -48,80 +39,39 @@ CohortConverter(
 import { cohortConverter } from 'react-growth-analytics';
 
 const dayData = [
-  {
-    date: '2018-01-01',
-    count: 300
-  },
-  {
-    date: '2018-01-02',
-    count: 323
-  },
-  ...
-]
+  { date: '2018-01-01', count: 10, denom: 20, annotation: null },
+  { date: '2018-01-02', count: 10, denom: 20, annotation: null },
+  { date: '2018-01-03', count: 10, denom: 20, annotation: 'Launched Newsletter' },
+  // ...
+];
 
-// View data in 7 days
-let output = cohortConverter(dayData,7);
+// View data in 7-day cohorts
+let output = cohortConverter(dayData, 7);
 
-// Now view data in 28 days
-output = cohortConverter(dayData,28);
+// View as percentages
+output = cohortConverter(dayData, 7, { percentage: true });
 
-// Let's add graph headers
-output.unshift(['Date', '# count']);
+// Add a goal line
+output = cohortConverter(dayData, 7, { percentage: true, goal: 30 });
+// goal is returned as 0.3 in percentage mode
 
-// Add to Google Chart...
+// Disable annotations
+output = cohortConverter(dayData, 7, { annotate: false });
 ```
 
-#### Output as percentage
+### stickiness
 
-If you would like to receive output as a percentage, then simply add a `true` boolean to `cohortConverter()`:
+Calculates L28 stickiness: DAU / rolling 28-day total DAU.
 
-```javascript
-const output = cohortConverter(dataArray, period, true);
-```
-
-#### Adding a goal
-
-If you would like to add a static goal to your output then simply provide it as a 4th param.
-
-If you have requested the data to be returned as a percentage, the goal will also be returned as a percentage.
+Useful for understanding how sticky your product is.
 
 ```javascript
-const output = cohortConverter(dataArray, period, true, 30); // 0.3
-
-cohortConverter(dataArray, period, false, 30); // 30
-```
-
-#### Adding attributes
-
-If you add a param of `annotation` to your data, it will return as the final param in the accumulated data set.
-
-```javascript
-const dayData = [
-  {
-    date: '2018-01-01',
-    count: 300,
-    annotation: null
-  },
-  {
-    date: '2018-01-02',
-    count: 323,
-    annotation: "Launched Newsletter"
-  },
-  ...
-]
-```
-
-### Stickiness
-
-```javascript
-type DAU = {
-  date: Date,
+type Dau = {
+  date: string,
   count: number
 };
 
-type dataFormat = DayData[];
-
-CohortConverter((data: dataFormat));
+stickiness(data: Dau[])
 ```
 
 #### Sample usage
@@ -130,30 +80,23 @@ CohortConverter((data: dataFormat));
 import { stickiness } from 'react-growth-analytics';
 
 const dayData = [
-  {
-    date: '2018-01-01',
-    count: 300
-  },
-  {
-    date: '2018-01-02',
-    count: 323
-  },
-  ...
-]
+  { date: '2018-01-01', count: 300 },
+  { date: '2018-01-02', count: 323 },
+  // ... (minimum 28 days)
+];
 
 const sticky = stickiness(dayData);
 
 // [
 //   {
-//     date: '2018-01-01',
+//     date: '2018-01-29',
 //     count: 300,
 //     stickiness: 0.0232
-//   },
-//   {
-//     date: '2018-01-02',
-//     count: 323,
-//     stickiness: 0.0132
 //   },
 //   ...
 // ]
 ```
+
+## License
+
+MIT
