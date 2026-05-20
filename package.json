@@ -11,21 +11,26 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-flow": "^6.23.0",
+    "@babel/cli": "^7.27.0",
+    "@babel/core": "^7.27.1",
+    "@babel/preset-env": "^7.27.1",
+    "@babel/preset-flow": "^7.27.1",
     "flow-bin": "^0.69.0",
-    "jest": "^22.4.3"
+    "jest": "^29.7.0",
+    "babel-jest": "^29.7.0"
   },
   "scripts": {
-    "build": "babel src --presets babel-preset-env --out-dir dist",
+    "build": "babel src --presets @babel/preset-env --out-dir dist --ignore 'src/__tests__'",
     "prepublishOnly": "yarn run build",
     "test": "jest"
   },
   "dependencies": {},
   "jest": {
-    "setupFiles": [
-      "./jest-setup.js"
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "testMatch": [
+      "**/src/__tests__/**/*.js"
     ]
   }
 }
